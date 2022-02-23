@@ -17,5 +17,8 @@ function createApp(){
         ceil[i].setAttribute('data-ceil', i)        
         game.append(ceil[i])
     }
+    const message = document.createElement('div')
+    message.classList.add('message')
+    table.append(message)
 }
 createApp()

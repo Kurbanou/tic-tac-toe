@@ -23,4 +23,5 @@ function openPopupInfo(){ // попап с информацией
 function popClose (){
     openPopupInfo()
 }
-popCls.addEventListener('click', popClose)
+if(popCls){
+popCls.addEventListener('click', popClose)}
