@@ -2,7 +2,9 @@ const menu = document.querySelector('.main__menu')
 const links = menu.getElementsByTagName('a')
 const li = menu.getElementsByTagName('li')
 
+
 setTimeout(function () {
+    randomBg()
     burger();
 }, 3000);
 
