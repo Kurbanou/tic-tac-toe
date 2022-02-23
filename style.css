@@ -22,3 +22,51 @@ body {
 *::after {
     box-sizing: border-box;
 }
+.app{
+    padding: 10px;
+    width: 100%;
+    max-width: 990px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+}
+.game{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    width: 355px;
+    height: 355px;
+    justify-content: space-between;
+    align-content: space-between;
+}
+.ceil{
+    gap: 5px;
+    width: 115px;
+    height: 115px;
+}
+.hover{
+    background: red;
+    opacity: .2;
+    cursor: pointer;
+}
+.hover:hover{
+    opacity: .5;
+}
+.table{
+    width: 355px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.message{}
+.countGames{}
+.score{}
+.player,
+.draw,
+.comp{}
+.playerScore,
+.drawScore,
+.compScore{}
+.resetscore{}

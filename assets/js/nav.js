@@ -5,15 +5,16 @@ const li = menu.getElementsByTagName('li')
 
 setTimeout(function () {
     randomBg()
-    burger();
-}, 3000);
+    burger()
+}, 3000)
 
 function randomBg(){ //dark color onli
         let color = '#';
         for (let i = 0; i < 6; i++) {
-            color += Math.floor(Math.random() * 10);
+            color += Math.floor(Math.random() * 10)
         }
         document.documentElement.style.setProperty('--burger-color', `${color}`)
+
 }
 
 function burger() {
