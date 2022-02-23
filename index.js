@@ -25,7 +25,7 @@ function createApp(){
         ceil[i].setAttribute('data-ceil', i)
         ceil[i].style.backgroundColor = `${color}`
         game.append(ceil[i])}
-        setTimeout( function(){sss()}, i*100)
+        setTimeout( function(){sss()}, i*120)
     }
     const message = document.createElement('div')
     message.classList.add('message')
