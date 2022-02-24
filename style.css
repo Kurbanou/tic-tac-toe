@@ -59,13 +59,18 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    background-color: #f78166;
 }
-.message{}
+.message{
+    background-color: #238636;
+}
 .countGames{}
 .score{}
 .player,
 .draw,
-.comp{}
+.comp{
+    
+}
 .playerScore,
 .drawScore,
 .compScore{}

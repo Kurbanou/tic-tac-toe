@@ -33,12 +33,14 @@ function createApp(){
     table.append(message)
     const countGames =document.createElement('div')
     countGames.classList.add('countGames')
+    countGames.innerHTML = 'Сыгранно игр : 0'
     table.append(countGames)
     const score =document.createElement('div')
     score.classList.add('score')
     table.append(score)
     const player =document.createElement('div')
     player.classList.add('player')
+    player.innerHTML = 'Имя игрока'
     score.append(player)
     const draw = document.createElement('div')
     draw.classList.add('draw')
