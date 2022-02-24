@@ -45,6 +45,7 @@ body {
     gap: 5px;
     width: 115px;
     height: 115px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5)
 }
 .hover{
     background: red;
