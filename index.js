@@ -1,16 +1,6 @@
 const main = document.querySelector('main')
 const start = document.querySelector('[data-text]')
 const footer = document.querySelector('footer')
-// random color ++++++++++++++++++++++++++++++++++++++++++++++++
-let color = '#'
-    for (let i = 0; i < 6; i++) {
-        color += Math.floor(Math.random() * 10)
-    }
-document.documentElement.style.setProperty('--color', `${color}`)
-// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
-
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -18,30 +8,46 @@ function createApp(){
     const app = document.createElement('section')
     app.classList.add('app')
     main.append(app)
-    let ceil = [] 
+    let ceil = []
     ceil.length=9
 
-    function newGame(){   
+    function newGame(){
+        const colorGarme = ['#b62b6e','#9628c6','#4374b7','#98c807','#b1a24a','#ef9421','#d13814']
+        let color
+        for (let i = 0; i < 6; i++) {
+            color = colorGarme[Math.floor(Math.random() * 7)]
+        }
+        document.documentElement.style.setProperty('--color', `${color}`)
         const game = document.createElement('div')
         game.classList.add('game')
-          
+
         if(document.querySelector('.game')) {
-            console.log('1')
-            game.remove()
-        }
-        else{
-            app.append(game)         
+            document.querySelector('.game').remove()
+            app.append(game)
             for(let i = 0; i<ceil.length; i++){
                 function sss(){
                 ceil[i] = document.createElement('div')
                 ceil[i].classList.add('ceil','hover')
                 ceil[i].setAttribute('data-ceil', i)
-                ceil[i].style.backgroundColor = `${color}`   
-                ceil[i].innerHTML = 'X'             
-                game.append(ceil[i])}        
+                ceil[i].style.backgroundColor = `${color}`
+                ceil[i].innerHTML = 'X'
+                game.append(ceil[i])}
                 setTimeout( function(){sss()}, i*120)
             }
-        }      
+        }
+        else{
+            app.append(game)
+            for(let i = 0; i<ceil.length; i++){
+                function sss(){
+                ceil[i] = document.createElement('div')
+                ceil[i].classList.add('ceil','hover')
+                ceil[i].setAttribute('data-ceil', i)
+                ceil[i].style.backgroundColor = `${color}`
+                ceil[i].innerHTML = 'X'
+                game.append(ceil[i])}
+                setTimeout( function(){sss()}, i*120)
+            }
+        }
     }
 
     function createTable(){
@@ -89,20 +95,20 @@ function createApp(){
         table.append(resetScore)
         resetScore.addEventListener('click', newGame)
     }
-    
+
     function createFooter(){
         const footerBody = document.createElement('div')
         footerBody.classList.add('footerBody')
-        footer.append(footerBody)      
+        footer.append(footerBody)
 
-        
+
 
     }
-    
 
     setTimeout( function(){
+        createTable()
+        newGame()
         createFooter()
-        createTable()        
     }, 1500)
 }
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++

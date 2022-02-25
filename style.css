@@ -5,6 +5,7 @@
     --bg-blue:#58a6ff;
     --bg-green:#238636;
     --font:#6E7781;
+    --X:#edd812;
     /* --color: #19bc8b; */
 }
 
@@ -52,8 +53,8 @@ body {
     box-shadow: 0 0 10px rgba(0,0,0,0.8);
     font-family: Montserrat;
     font-size: 4em;
-    color: var(--bg-yellow);
-    display: flex;    
+    color: var(--X);
+    display: flex;
     justify-content: center;
     align-items: center;
 }
@@ -63,7 +64,7 @@ body {
     cursor: pointer;
 }
 .hover:hover{
-    opacity: .5;
+    opacity: .8;
 }
 .table{
     width: 355px;
@@ -87,10 +88,10 @@ body {
     align-items: center;
     font-family: Montserrat;
     font-size: 2em;
-    
+
     text-transform: uppercase;
 }
-.countGames{    
+.countGames{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -99,7 +100,7 @@ body {
     line-height: 1em;
 }
 .score{
-    display: flex;    
+    display: flex;
     align-content: space-between;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -108,41 +109,42 @@ body {
 .player,
 .draw,
 .comp{
-    font-family: Montserrat;  
-    font-weight: bold;  
+    font-family: Montserrat;
+    font-weight: bold;
     width: 115px;
     display: flex;
     justify-content: center;
-    align-items: center;   
+    align-items: center;
 }
 .playerScore,
 .drawScore,
 .compScore{
-    font-family: Montserrat;    
+    font-family: Montserrat;
     width: 115px;
     display: flex;
     justify-content: center;
-    align-items: center;  
-    margin-top: 10px;  
+    align-items: center;
+    margin-top: 10px;
 }
 
-.resetScore{ 
+.resetScore{
     font-family: Montserrat;
     font-size: 1em;
     width: fit-content;
     color: var(--color);
     transition: 0.25s;
     background: none;
-    border: 2px solid;   
+    border: 2px solid;
     line-height: 1;
     margin: 0.5em;
-    padding: 1em 2em;    
+    padding: 1em 2em;
     box-shadow: 0.3em 0.3em 0 0 var(--color), inset 0.3em 0.3em 0 0 var(--color);
-    opacity: .5;
+    opacity: .8;
     text-transform: uppercase;
 }
-.resetScore:hover, 
+.resetScore:hover,
 .resetScore:focus {
+    opacity: 1;
     border-color: var(--color);
     color: #fff;
     box-shadow: 0 0 0 0 var(--color), inset 6em 3.5em 0 0 var(--color);
