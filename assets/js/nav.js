@@ -2,12 +2,6 @@ const menu = document.querySelector('.main__menu')
 const links = menu.getElementsByTagName('a')
 const li = menu.getElementsByTagName('li')
 
-
-setTimeout(function () {
-    randomBg()
-    burger()
-}, 3000)
-
 function randomBg(){ //dark color onli
         let color = '#';
         for (let i = 0; i < 6; i++) {
@@ -32,3 +26,8 @@ for (let i = 0; i < links.length; i++) {
     links[i].addEventListener('click',burger)
     links[i].setAttribute('data-text', links[i].innerHTML)
 }
+
+setTimeout(function () {
+    randomBg()
+    burger()
+}, 3000)
