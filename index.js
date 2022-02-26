@@ -11,6 +11,13 @@ function createApp(){
     let ceil = []
     ceil.length=9
 
+    const innerAppFirst = document.createElement('div')
+    innerAppFirst.classList.add('app__inner')
+    app.append(innerAppFirst)
+    const innerAppSecond = document.createElement('div')
+    innerAppSecond.classList.add('app__inner')
+    app.append(innerAppSecond)
+
     function newGame(){
         const colorGarme = ['#b62b6e','#9628c6','#4374b7','#98c807','#b1a24a','#ef9421','#d13814']
         let color
@@ -23,7 +30,7 @@ function createApp(){
 
         if(document.querySelector('.game')) {
             document.querySelector('.game').remove()
-            app.append(game)
+            innerAppFirst.append(game)
             for(let i = 0; i<ceil.length; i++){
                 function sss(){
                 ceil[i] = document.createElement('div')
@@ -32,11 +39,11 @@ function createApp(){
                 ceil[i].style.backgroundColor = `${color}`
                 ceil[i].innerHTML = 'X'
                 game.append(ceil[i])}
-                setTimeout( function(){sss()}, i*120)
+                setTimeout( function(){sss()}, i*80)
             }
         }
         else{
-            app.append(game)
+            innerAppFirst.append(game)
             for(let i = 0; i<ceil.length; i++){
                 function sss(){
                 ceil[i] = document.createElement('div')
@@ -45,15 +52,15 @@ function createApp(){
                 ceil[i].style.backgroundColor = `${color}`
                 ceil[i].innerHTML = 'X'
                 game.append(ceil[i])}
-                setTimeout( function(){sss()}, i*120)
+                setTimeout( function(){sss()}, i*80)
             }
         }
     }
 
     function createTable(){
         const table =document.createElement('div')
-        table.classList.add('table','show')
-        app.append(table)
+        table.classList.add('table')
+        innerAppSecond.append(table)
         const message = document.createElement('div')
         message.classList.add('message')
         message.innerHTML = 'Player turn'
@@ -94,6 +101,9 @@ function createApp(){
         resetScore.innerHTML = 'Reset score'
         table.append(resetScore)
         resetScore.addEventListener('click', newGame)
+        setTimeout( function(){
+            table.classList.add('show')
+        }, 1000)
     }
 
     function createFooter(){
@@ -103,13 +113,13 @@ function createApp(){
 
 
 
-    }
 
-    setTimeout( function(){
-        createTable()
-        newGame()
-        createFooter()
-    }, 1500)
+    }
+    newGame()
+    createTable()
+    createFooter()
+
+
 }
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
