@@ -30,13 +30,17 @@ function currentStep(){
     stepCount++
 
     if(dataX.length < 2 ){freeCeil()}
-    else{step(dataX, num)}
+    else{
+      step(dataX, num)
+
+
+    }
 
 
 
     // console.log(stepCount)
     // console.log(dataO)
-    console.log(dataX)
+    // console.log(dataX)
 
 
   }
@@ -47,15 +51,12 @@ function currentStep(){
 }
 
 function freeCeil(){
-  if(ceil[4].innerHTML == ''){ceil[4].innerHTML = 'O'; stepCount++; dataO.push('4')}
-  else if(ceil[0].innerHTML == ''){ceil[0].innerHTML = 'O'; stepCount++; dataO.push('0')}
-  else if(ceil[2].innerHTML == ''){ceil[2].innerHTML = 'O'; stepCount++; dataO.push('2')}
-  else if(ceil[6].innerHTML == ''){ceil[6].innerHTML = 'O'; stepCount++; dataO.push('6')}
-  else if(ceil[8].innerHTML == ''){ceil[8].innerHTML = 'O'; stepCount++; dataO.push('8')}
+  if(ceil[4].innerHTML == ''){ceil[4].innerHTML = 'O'; stepCount++; dataO.push(4)}
+  else if(ceil[0].innerHTML == ''){ceil[0].innerHTML = 'O'; stepCount++; dataO.push(0)}
+  else if(ceil[2].innerHTML == ''){ceil[2].innerHTML = 'O'; stepCount++; dataO.push(2)}
+  else if(ceil[6].innerHTML == ''){ceil[6].innerHTML = 'O'; stepCount++; dataO.push(6)}
+  else if(ceil[8].innerHTML == ''){ceil[8].innerHTML = 'O'; stepCount++; dataO.push(8)}
 }
-
-
-
 
 function step(arr, number) {
   for (let i = 0; i < winCombinations.length;  i++) {
@@ -66,7 +67,27 @@ function step(arr, number) {
         if (arr.indexOf(someWinArr[k]) !== -1) {
           count++
           if (count === 2) {
-            return console.log(winCombinations[i])
+            console.log(winCombinations[i])
+
+            // if (ceil[winCombinations[i][0]].innerHTML == ''){
+              ceil[winCombinations[i][0]].innerHTM = 'O'
+              stepCount++
+              dataO.push(winCombinations[i][0])
+              ceil[winCombinations[i][0]].classList.remove('hover')
+            // }
+            // else if (ceil[winCombinations[i][1]].innerHTML == ''){
+            //   ceil[winCombinations[i][1]].innerHTM = 'O'
+            //   stepCount++
+            //   dataO.push(winCombinations[i][1])
+            //   ceil[winCombinations[i][1]].classList.remove('hover')
+            // }
+            // else if (ceil[winCombinations[i][2]].innerHTML == ''){
+            //   ceil[winCombinations[i][2]].innerHTM = 'O'
+            //   stepCount++
+            //   dataO.push(winCombinations[i][2])
+            //   ceil[winCombinations[i][2]].classList.remove('hover')
+            // }
+
           }
         }
       }
@@ -74,8 +95,3 @@ function step(arr, number) {
     }
   }
 }
-
-
-
-
-
