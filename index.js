@@ -22,6 +22,8 @@ createInner()
 
 function newGame(){
     stepCount = 0
+    dataX = []
+    dataO = []
     const innerAppFirst = document.querySelector('.Game')
     const colorGarme = ['#b62b6e','#9628c6','#4374b7','#98c807','#b1a24a','#ef9421','#d13814']
     let color

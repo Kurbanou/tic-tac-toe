@@ -1,4 +1,6 @@
 let gameCount, playerName, scoreplayer, scoreAi, scoreDraw, gameInfo;
+let dataX = []
+let dataO = []
 const start = document.querySelector('[data-text]')
 gameInfo = 'Player turn'
 gameCount = 0
@@ -20,17 +22,56 @@ const winCombinations = [
 
 start.addEventListener('click', createApp)
 function currentStep(){
-
-    if(!this.innerHTML){
-    this.innerHTML = 'X'
+  if(!this.innerHTML){
+    let num = this.getAttribute('data-ceil')
+    this.innerHTML = 'X'    
     this.classList.remove('hover')
+    dataX.push(num)
     stepCount++
-    console.log( random(1))
+    getBestStep(dataO,num)
+    if(dataX.length < 2 ){freeCeil()} 
+    else{getBestStep(dataO,num)}
 
 
+    // console.log(stepCount)
+    // console.log(dataO)
+    // console.log(dataX)
+
+
+  }
+
+   
+    
+
+}
+
+function freeCeil(){  
+  if(ceil[4].innerHTML == ''){ceil[4].innerHTML = 'O'; stepCount++; dataO.push('4')}
+  else if(ceil[0].innerHTML == ''){ceil[0].innerHTML = 'O'; stepCount++; dataO.push('0')} 
+  else if(ceil[2].innerHTML == ''){ceil[2].innerHTML = 'O'; stepCount++; dataO.push('2')}
+  else if(ceil[6].innerHTML == ''){ceil[6].innerHTML = 'O'; stepCount++; dataO.push('6')}
+  else if(ceil[8].innerHTML == ''){ceil[8].innerHTML = 'O'; stepCount++; dataO.push('8')}
+}
+
+
+
+function getBestStep(arr, number){
+  
+  for (let i = 0; i < winCombinations.length;  i++) {
+    let someWinArr = winCombinations[i],
+      count = 0;
+    if (someWinArr.indexOf(number) !== -1) {
+      for (let i = 0; i < someWinArr.length; i++) {
+        if (arr.indexOf(someWinArr[i]) !== -1) {
+          count++;
+          if (count === 2) {
+            return console.log(winCombinations[i])
+          }
+        }
+      }
+      count = 0;
     }
-    return stepCount
-
+  }    
 }
 
 
