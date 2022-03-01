@@ -21,6 +21,15 @@ const winCombinations = [
   ]
 
 start.addEventListener('click', createApp)
+
+function midlOrCorner(){ //AI занять центр или угол только на первом шагу
+  if(ceil[4].innerHTML == ''){ceil[4].innerHTML = 'O'; stepCount++; dataO.push(4); ceil[4].classList.remove('hover'); return console.log('free ceil') }
+  else if(ceil[0].innerHTML == ''){ceil[0].innerHTML = 'O'; stepCount++; dataO.push(0); ceil[0].classList.remove('hover'); return console.log('free ceil')}
+  else if(ceil[2].innerHTML == ''){ceil[2].innerHTML = 'O'; stepCount++; dataO.push(2); ceil[2].classList.remove('hover'); return console.log('free ceil')}
+  else if(ceil[6].innerHTML == ''){ceil[6].innerHTML = 'O'; stepCount++; dataO.push(6); ceil[6].classList.remove('hover'); return console.log('free ceil')}
+  else if(ceil[8].innerHTML == ''){ceil[8].innerHTML = 'O'; stepCount++; dataO.push(8); ceil[8].classList.remove('hover'); return console.log('free ceil')}
+}
+
 function currentStep(){
   if(!this.innerHTML){
     let num = +this.getAttribute('data-ceil')
@@ -28,37 +37,77 @@ function currentStep(){
     this.classList.remove('hover')
     dataX.push(num)
     stepCount++
+    
 
-    if(dataX.length < 2 ){freeCeil()}
-    else{
-      step(dataX, num)
+    if(dataX.length === 1){midlOrCorner()}
+    // else{
+    //   stepAiBest(dataO, num)
+    //   stepPlBest(dataX, num)
+    // }
+    else if(dataX.length === 2){stepPlBest(dataX, num)}
+
+
+
+    else if(dataX.length > 2){
+      stepAiBest(dataO)
+      
 
 
     }
 
 
 
-    // console.log(stepCount)
-    // console.log(dataO)
-    // console.log(dataX)
-
+    console.log('stepCount :',stepCount)   
+    console.log('dataX :',dataX)
+    console.log('dataO :',dataO)
 
   }
+}
+function stepAiBest(arr){
+  for (let i = 0; i < winCombinations.length;  i++) {
+    let someWinArr = winCombinations[i],
+      count = 0;
+    
+      for (let k = 0; k < someWinArr.length; k++) {
+        if (arr.indexOf(someWinArr[k]) !== -1) {
+          count++
+          if (count === 2) {
+            console.log(winCombinations[i])
 
+            if (ceil[winCombinations[i][0]].innerHTML == ''){
+              ceil[winCombinations[i][0]].innerHTML = 'O'
+              stepCount++
+              dataO.push(winCombinations[i][0])
+              ceil[winCombinations[i][0]].classList.remove('hover')
+              console.log('step[0]')
+            }
+            else if (ceil[winCombinations[i][1]].innerHTML == ''){
+              ceil[winCombinations[i][1]].innerHTML = 'O'
+              stepCount++
+              dataO.push(winCombinations[i][1])
+              ceil[winCombinations[i][1]].classList.remove('hover')
+              console.log('step[1]')
+            }
+            else if (ceil[winCombinations[i][2]].innerHTML == ''){
+              ceil[winCombinations[i][2]].innerHTML = 'O'
+              stepCount++
+              dataO.push(winCombinations[i][2])
+              ceil[winCombinations[i][2]].classList.remove('hover')
+              console.log('step[2]')
+            }
 
-
-
+          }
+          if(count === 3){
+            console.log('count ===3 ')
+            for(let i = 0; i<ceil.length; i++){
+            ceil[i].removeEventListener('click', currentStep)}
+          }
+        }
+      }     
+  }
 }
 
-function freeCeil(){
-  if(ceil[4].innerHTML == ''){ceil[4].innerHTML = 'O'; stepCount++; dataO.push(4)}
-  else if(ceil[0].innerHTML == ''){ceil[0].innerHTML = 'O'; stepCount++; dataO.push(0)}
-  else if(ceil[2].innerHTML == ''){ceil[2].innerHTML = 'O'; stepCount++; dataO.push(2)}
-  else if(ceil[6].innerHTML == ''){ceil[6].innerHTML = 'O'; stepCount++; dataO.push(6)}
-  else if(ceil[8].innerHTML == ''){ceil[8].innerHTML = 'O'; stepCount++; dataO.push(8)}
-}
-
-function step(arr, number) {
+function stepPlBest(arr, number) {
   for (let i = 0; i < winCombinations.length;  i++) {
     let someWinArr = winCombinations[i],
       count = 0;
@@ -66,28 +115,41 @@ function step(arr, number) {
       for (let k = 0; k < someWinArr.length; k++) {
         if (arr.indexOf(someWinArr[k]) !== -1) {
           count++
+          if (count === 1) {
+            midlOrCorner()
+
+          }
           if (count === 2) {
             console.log(winCombinations[i])
 
-            // if (ceil[winCombinations[i][0]].innerHTML == ''){
-              ceil[winCombinations[i][0]].innerHTM = 'O'
+            if (ceil[winCombinations[i][0]].innerHTML == ''){
+              ceil[winCombinations[i][0]].innerHTML = 'O'
               stepCount++
               dataO.push(winCombinations[i][0])
               ceil[winCombinations[i][0]].classList.remove('hover')
-            // }
-            // else if (ceil[winCombinations[i][1]].innerHTML == ''){
-            //   ceil[winCombinations[i][1]].innerHTM = 'O'
-            //   stepCount++
-            //   dataO.push(winCombinations[i][1])
-            //   ceil[winCombinations[i][1]].classList.remove('hover')
-            // }
-            // else if (ceil[winCombinations[i][2]].innerHTML == ''){
-            //   ceil[winCombinations[i][2]].innerHTM = 'O'
-            //   stepCount++
-            //   dataO.push(winCombinations[i][2])
-            //   ceil[winCombinations[i][2]].classList.remove('hover')
-            // }
+              console.log('step[0]')
+            }
+            else if (ceil[winCombinations[i][1]].innerHTML == ''){
+              ceil[winCombinations[i][1]].innerHTML = 'O'
+              stepCount++
+              dataO.push(winCombinations[i][1])
+              ceil[winCombinations[i][1]].classList.remove('hover')
+              console.log('step[1]')
+            }
+            else if (ceil[winCombinations[i][2]].innerHTML == ''){
+              ceil[winCombinations[i][2]].innerHTML = 'O'
+              stepCount++
+              dataO.push(winCombinations[i][2])
+              ceil[winCombinations[i][2]].classList.remove('hover')
+              console.log('step[2]')
+            }
+            else {console.log('hz')}
 
+          }
+          if(count === 3){
+            console.log('count ===4 ')
+            for(let i = 0; i<ceil.length; i++){
+            ceil[i].removeEventListener('click', currentStep)}
           }
         }
       }
@@ -95,3 +157,13 @@ function step(arr, number) {
     }
   }
 }
+
+// function randomTurn(arr){
+//   for(let i = 0; i < arr.length; i++){
+//     if (!arr)
+//   }
+
+// }
+
+
+
