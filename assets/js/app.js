@@ -23,42 +23,6 @@ const winCombinations = [
 arrayRandom = [4,0,1,2,3,5,6,7,8]
 
 start.addEventListener('click', createApp)
-
-
-function currentStep(){
-  if(!this.innerHTML){
-    let num = +this.getAttribute('data-ceil')
-    this.innerHTML = 'X'
-    this.classList.remove('hover')
-    dataX.push(num)
-    stepCount++   
-    if(dataX.length === 1){
-      aiTurn(arrayRandom)
-    }
-    check(dataX)
-    
-
-    // check(dataX)
-   
- 
-
-
-    // console.log('stepCount :',stepCount)   
-    // console.log('dataX :',dataX)
-    // console.log('dataO :',dataO)
-    
-  }
-  
-}
-
-
-
-
-
-
-
-
-
 function aiTurn(array){  
   for(let i = 0; i < array.length; i++){          
     if(ceil[array[i]].innerHTML !== "X" && ceil[array[i]].innerHTML !== "O"){     
@@ -70,8 +34,6 @@ function aiTurn(array){
     }    
   }  
 }
-
-
 
 function check(arr){
   for (let i = 0; i < winCombinations.length;  i++) {
@@ -85,10 +47,34 @@ function check(arr){
             a = winCombinations[i].concat(arrayRandom)
             console.log('a',a)
             return   aiTurn(a)         
-          }          
-        }  
+          }  
+          else{
+             console.log('1')
+             return
+          }        
+        }         
       }
     count = 0
   }
 }
 
+
+function currentStep(){
+  if(!this.innerHTML){
+    let num = +this.getAttribute('data-ceil')
+    this.innerHTML = 'X'
+    this.classList.remove('hover')
+    dataX.push(num)
+    stepCount++   
+    if(dataX.length === 1){
+      aiTurn(arrayRandom)
+    }
+    if(dataX.length > 1){
+      check(dataO)
+    }
+   
+    // console.log('stepCount :',stepCount)   
+    // console.log('dataX :',dataX)
+    // console.log('dataO :',dataO)    
+  }  
+}
