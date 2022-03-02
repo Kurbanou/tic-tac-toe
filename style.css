@@ -36,7 +36,7 @@ body {
 .container.show{
     opacity: 1;
     transform: translate3d(0, 0, 0);
-    transition: transform 0.9s ease-out, opacity 0.9s ease-out;
+    transition: transform 0.2s ease-out, opacity 0.2s ease-out;
 }
 .app{
     flex-direction: row;
@@ -94,7 +94,7 @@ body {
 .table.show{
     opacity: 1;
     transform: translate3d(0, 0, 0);
-    transition: transform 0.9s ease-out, opacity 0.9s ease-out;
+    transition: transform 0.2s ease-out, opacity 0.2s ease-out;
 }
 .message{
     font-weight: bold;
