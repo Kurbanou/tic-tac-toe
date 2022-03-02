@@ -21,6 +21,7 @@ function createInner(){
 createInner()
 
 function newGame(){
+    gameInfo = 'game'
     stepCount = 0
     dataX = []
     dataO = []
