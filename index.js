@@ -8,7 +8,6 @@ start.addEventListener('click', createApp)
 gameInfo =  'Game'
 gameCount = 0
 playerName = 'Player'
-
 scorePlayer = 0
 scoreAi = 0
 scoreDraw = 0
@@ -48,7 +47,7 @@ createTable()
 createFooter()
 
 function newGame(){
-    
+
     stepCount = 0
     dataX = []
     dataO = []
@@ -77,7 +76,7 @@ function newGame(){
         setTimeout( function(){sss()}, i*80)
 
     }
-    
+
 }
 
 function createTable(){
@@ -121,24 +120,24 @@ function createTable(){
     compScore.innerHTML = scoreAi
     score.append(compScore)
     const innerButton= document.createElement('div')
-    innerButton.classList.add('inner__button')    
-    table.append(innerButton)  
+    innerButton.classList.add('inner__button')
+    table.append(innerButton)
     const reGame = document.createElement('button')
-    reGame.classList.add('learn-more')
+    reGame.classList.add('learn-more', 'newGame')
     reGame.innerHTML = `<span class="circle" aria-hidden="true">
                         <span class="icon arrow"></span>
                         </span>
                         <span class="button-text">new game</span>`
-    innerButton.append(reGame)    
-    reGame.addEventListener('click', newGame) 
+    innerButton.append(reGame)
+    reGame.addEventListener('click', newGame)
     const resetScore = document.createElement('button')
-    resetScore.classList.add('learn-more')
+    resetScore.classList.add('learn-more', 'reset')
     resetScore.innerHTML = `<span class="circle" aria-hidden="true">
                             <span class="icon arrow"></span>
                             </span>
                             <span class="button-text">reset score</span>`
-    innerButton.append(resetScore)    
-    resetScore.addEventListener('click', newGame)       
+    innerButton.append(resetScore)
+
 }
 
 function createFooter(){
@@ -169,9 +168,9 @@ function createFooter(){
 }
 function ceilShow (){
     const ceil = document.querySelectorAll('.ceil')
-    ceil.forEach(el => el.classList.remove('hide'))        
+    ceil.forEach(el => el.classList.remove('hide'))
 }
-  
+
 
 
 function createApp(){
@@ -180,6 +179,6 @@ function createApp(){
     }, 1000)
     setTimeout( function(){
         document.querySelector('.container').classList.add('show')
-    }, 1000)  
-    newGame()     
+    }, 1000)
+    newGame()
 }
