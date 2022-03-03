@@ -1,30 +1,4 @@
-let gameCount, playerName, scoreplayer, scoreAi, scoreDraw, gameInfo;
-let dataX = []
-let dataO = []
-const start = document.querySelector('[data-text]')
-gameInfo =  ''
-
-gameCount = 0
-playerName = 'Player'
-scoreplayer = 0
-scoreAi = 0
-scoreDraw = 0
-let stepCount = 0
-const winCombinations = [
-    [0, 1, 2], // Horizontals
-    [0, 3, 6],
-    [3, 4, 5],
-    [1, 4, 7], // Verticals
-    [6, 7, 8],
-    [2, 5, 8],
-    [0, 4, 8], // Diagonals
-    [2, 4, 6],
-  ]
-
-arrayRandom = [4,0,2,1,6,5,3,7,8]
-
-start.addEventListener('click', createApp)
-
+// +++++++++++++++++++++++++++++++++++++++GAME+++++++++++++++++++++++++++++++
 function aiTurn(arr){
   for(let i = 0; i < arr.length; i++){
     if(ceil[arr[i]].innerHTML !== "X" && ceil[arr[i]].innerHTML !== "O"){
@@ -53,7 +27,7 @@ function check(arr){
   }
 }
 
-function checkWin(arr){
+function checkWin(arr,score,inner){
   for (let i = 0; i < winCombinations.length;  i++) {
     let someWinArr = winCombinations[i],
     count = 0;
@@ -62,6 +36,8 @@ function checkWin(arr){
           count++
           if (count == 3){
             ceil.forEach(element => element.removeEventListener('click', currentStep))
+            score++  
+            inner.innerHTML = `${score}`
             return true
           }
         }
@@ -74,38 +50,38 @@ function checkWin(arr){
 function currentStep(){
 
   if(!this.innerHTML){
+    playerScore = document.querySelector('.playerScore')
+    compScore = document.querySelector('.compScore')
+   
+
     let num = +this.getAttribute('data-ceil')
-    this.innerHTML = 'X'
-    this.classList.remove('hover')
+    this.innerHTML = 'X'    
+    this.classList.remove('hover')  
     dataX.push(num)
-    checkWin(dataX)
+    checkWin(dataX, scorePlayer, playerScore)
     if(checkWin(dataX)){
       gameInfo = playerName + ' win'
-      document.querySelector('.message').innerHTML = gameInfo    }
+      document.querySelector('.message').innerHTML = gameInfo      
+    }
+
     stepCount++
+
     check(dataO)
     check(dataX)
     aiTurn(arrayRandom)
-    checkWin(dataO)
+    checkWin(dataO, scoreAi, compScore)
     if(checkWin(dataO)){
       gameInfo = 'AI Win'
-      document.querySelector('.message').innerHTML = gameInfo
+      document.querySelector('.message').innerHTML = gameInfo     
     }
     arrayRandom = [4,0,2,1,6,5,3,7,8]
-
-
-
-
-
-
-
-
-
     // console.log('stepCount :',stepCount)
     // console.log('dataX :',dataX)
     // console.log('dataO :',dataO)
+    console.log( scorePlayer, scoreAi)
   }
 }
+
 
 
 

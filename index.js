@@ -1,7 +1,32 @@
 const main = document.querySelector('main')
 const footer = document.querySelector('footer')
+let gameCount, playerName, scorePlayer, scoreAi, scoreDraw, gameInfo;
+let dataX = []
+let dataO = []
+const start = document.querySelector('[data-text]')
+start.addEventListener('click', createApp)
+gameInfo =  'Game'
+gameCount = 0
+playerName = 'Player'
+
+scorePlayer = 0
+scoreAi = 0
+scoreDraw = 0
+let stepCount = 0
 let ceil = []
     ceil.length=9
+const winCombinations = [
+    [0, 1, 2], // Horizontals
+    [0, 3, 6],
+    [3, 4, 5],
+    [1, 4, 7], // Verticals
+    [6, 7, 8],
+    [2, 5, 8],
+    [0, 4, 8], // Diagonals
+    [2, 4, 6],
+  ]
+
+arrayRandom = [4,0,2,1,6,5,3,7,8]
 
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -19,9 +44,11 @@ function createInner(){
 
 }
 createInner()
+createTable()
+createFooter()
 
 function newGame(){
-    gameInfo = 'game'
+    
     stepCount = 0
     dataX = []
     dataO = []
@@ -50,12 +77,13 @@ function newGame(){
         setTimeout( function(){sss()}, i*80)
 
     }
+    
 }
 
 function createTable(){
     const innerAppSecond = document.querySelector('.Table')
     const table =document.createElement('div')
-    table.classList.add('table')
+    table.classList.add('table','border-animate')
     innerAppSecond.append(table)
     const message = document.createElement('div')
     message.classList.add('message')
@@ -82,7 +110,7 @@ function createTable(){
     score.append(comp)
     const playerScore =document.createElement('div')
     playerScore.classList.add('playerScore')
-    playerScore.innerHTML = scoreplayer
+    playerScore.innerHTML = scorePlayer
     score.append(playerScore)
     const drawScore = document.createElement('div')
     drawScore.classList.add('drawScore')
@@ -92,14 +120,25 @@ function createTable(){
     compScore.classList.add('compScore')
     compScore.innerHTML = scoreAi
     score.append(compScore)
-    const resetScore = document.createElement('div')
-    resetScore.classList.add('resetScore')
-    resetScore.innerHTML = 'Reset score'
-    table.append(resetScore)
-    resetScore.addEventListener('click', newGame)
-    setTimeout( function(){
-        table.classList.add('show')
-    }, 1000)
+    const innerButton= document.createElement('div')
+    innerButton.classList.add('inner__button')    
+    table.append(innerButton)  
+    const reGame = document.createElement('button')
+    reGame.classList.add('learn-more')
+    reGame.innerHTML = `<span class="circle" aria-hidden="true">
+                        <span class="icon arrow"></span>
+                        </span>
+                        <span class="button-text">new game</span>`
+    innerButton.append(reGame)    
+    reGame.addEventListener('click', newGame) 
+    const resetScore = document.createElement('button')
+    resetScore.classList.add('learn-more')
+    resetScore.innerHTML = `<span class="circle" aria-hidden="true">
+                            <span class="icon arrow"></span>
+                            </span>
+                            <span class="button-text">reset score</span>`
+    innerButton.append(resetScore)    
+    resetScore.addEventListener('click', newGame)       
 }
 
 function createFooter(){
@@ -127,17 +166,20 @@ function createFooter(){
         </div>
     </div>`
     footer.append(container)
-    setTimeout( function(){
-        container.classList.add('show')
-    }, 1000)
 }
+function ceilShow (){
+    const ceil = document.querySelectorAll('.ceil')
+    ceil.forEach(el => el.classList.remove('hide'))        
+}
+  
 
-// ++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// function popupInfo(){
 
-// }
 function createApp(){
-    newGame()
-    createTable()
-    createFooter()
+    setTimeout( function(){
+       document.querySelector('.table').classList.add('show')
+    }, 1000)
+    setTimeout( function(){
+        document.querySelector('.container').classList.add('show')
+    }, 1000)  
+    newGame()     
 }
