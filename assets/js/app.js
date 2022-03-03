@@ -29,7 +29,7 @@ function check(arr){
   }
 }
 
-function checkWin(arr, score){
+function checkWin(arr){
   for (let i = 0; i < winCombinations.length;  i++) {
     let someWinArr = winCombinations[i],
     count = 0;
@@ -38,10 +38,10 @@ function checkWin(arr, score){
           count++
           if (count == 3){
             ceil.forEach(element => element.removeEventListener('click', currentStep));
-            (arr == dataO) ? scoreAi++ : scorePlayer++;
-            gameCount++
-            printScore()
-            return true
+            // (arr === dataO) ? scoreAi++ : scorePlayer++;
+            // gameCount++
+            // printScore()
+            return true, gameCount++, (arr === dataO) ? scoreAi++ : scorePlayer++, printScore()
           }
         }
       }
@@ -74,19 +74,19 @@ function currentStep(){
     this.innerHTML = 'X'
     this.classList.remove('hover')
     dataX.push(num)
-    checkWin(dataX, scorePlayer)
+    checkWin(dataX)
     stepCount++
     check(dataO)
     check(dataX)
     aiTurn(arrayRandom)
-    checkWin(dataO, scoreAi)
+    checkWin(dataO)
     arrayRandom = [4,0,2,1,6,5,3,7,8]
 
-    if(stepCount === 9 && !checkWin(dataX,scorePlayer) && !checkWin(dataO,scoreAi) ){
-      scoreDraw++
-      gameCount++
-      printScore()
-    }
+    // if(stepCount === 9 && !checkWin(dataX) && !checkWin(dataO) ){
+    //   scoreDraw++
+    //   gameCount++
+    //   printScore()
+    // }
     // console.log('stepCount :',stepCount)
     // console.log('dataX :',dataX)
     // console.log('dataO :',dataO)
