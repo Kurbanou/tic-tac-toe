@@ -4,7 +4,6 @@
 function aiTurn(arr){
   for(let i = 0; i < arr.length; i++){
     if(ceil[arr[i]].innerHTML !== "X" && ceil[arr[i]].innerHTML !== "O"){
-      
       dataO.push(arr[i])
       ceil[arr[i]].classList.remove('hover')
       stepCount++
@@ -12,6 +11,11 @@ function aiTurn(arr){
     }
   }
 }
+
+function randomAi(){
+  arrayRandom = [4,0,1,2,3,4,5,6,7,8]
+}
+
 
 function check(arr){
   for (let i = 0; i < winCombinations.length;  i++) {
@@ -66,6 +70,7 @@ function scoreReset() {
 
 
 function currentStep(){
+  randomAi()
   if(!this.innerHTML){
     playerScore = document.querySelector('.playerScore')
     compScore = document.querySelector('.compScore')
@@ -73,35 +78,23 @@ function currentStep(){
     this.innerHTML = 'X'
     this.classList.remove('hover')
     dataX.push(num)
-    // checkWin(dataX)
     stepCount++
-    // console.log(ceil[0])
-    // if((dataX == 2 && ceil[0].innerHTML === 'X' && ceil[8].innerHTML === 'X') || (dataX == 2 && ceil[2].innerHTML === 'X' && ceil[6].innerHTML === 'X')){
-    //   arrayRandom.unshift(1)
-    //   console.log(1 + arrayRandom)
-    // }
-    // else if(dataX == 2 && ceil[1].innerHTML === 'X' && ceil[3].innerHTML === 'X') {
-    //   arrayRandom.unshift(0,4)
-    //   console.log(arrayRandom)
-    // }
-       
     check(dataX)
     check(dataO)
     aiTurn(arrayRandom)
+    checkWin(dataX)
     checkWin(dataO)
-    arrayRandom = [4,8,2,1,6,5,3,7,0]
-
-    if(stepCount === 9 && !checkWin(dataX) && !checkWin(dataO) ){
+    if(stepCount === 9 && !checkWin(dataX) && !checkWin(dataO) ){//Draw +++++++++++
       scoreDraw++
       gameCount++
       printScore()
     }
-    // console.log('stepCount :',stepCount)
+    console.log('stepCount :',stepCount)
     // console.log('dataX :',dataX)
     // console.log('dataO :',dataO)
 
-  }
 
+  }
 }
 
 
