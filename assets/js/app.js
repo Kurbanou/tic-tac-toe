@@ -83,7 +83,7 @@ function currentStep(){
     check(dataO)
     aiTurn(arrayRandom)
     checkWin(dataO)
-    arrayRandom = [4,0,2,1,6,5,3,7,8]
+    arrayRandom = [4,8,2,1,6,5,3,7,0]
 
     if(stepCount === 9 && !checkWin(dataX) && !checkWin(dataO) ){
       scoreDraw++
