@@ -4,11 +4,11 @@
 function aiTurn(arr){
   for(let i = 0; i < arr.length; i++){
     if(ceil[arr[i]].innerHTML !== "X" && ceil[arr[i]].innerHTML !== "O"){
-      ceil[arr[i]].innerHTML = 'O'
+      
       dataO.push(arr[i])
       ceil[arr[i]].classList.remove('hover')
       stepCount++
-      return
+      return ceil[arr[i]].innerHTML = 'O'
     }
   }
 }
@@ -78,8 +78,12 @@ function currentStep(){
     dataX.push(num)
     checkWin(dataX)
     stepCount++
-    check(dataO)
+    if(dataX == 2 && ceil[0].innerHTML == 'X', ceil[8].innerHTML == 'X' || dataX == 2 && ceil[2].innerHTML == 'X', ceil[6].innerHTML == 'X'){
+      arrayRandom.unshift(1)
+    }
+       
     check(dataX)
+    check(dataO)
     aiTurn(arrayRandom)
     checkWin(dataO)
     arrayRandom = [4,0,2,1,6,5,3,7,8]
