@@ -12,6 +12,7 @@ scorePlayer = 0
 scoreAi = 0
 scoreDraw = 0
 let stepCount = 0
+let arrayRandom = []
 let ceil = []
     ceil.length=9
 const winCombinations = [
@@ -25,7 +26,7 @@ const winCombinations = [
     [2, 4, 6],
   ]
 
-arrayRandom = [4,8,2,1,6,5,3,7,0]
+
 
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++
