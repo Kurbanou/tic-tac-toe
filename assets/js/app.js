@@ -21,9 +21,9 @@ function check(arr){
         if (arr.indexOf(someWinArr[k]) !== -1) {
           count++
           if (count == 2){
-            console.log(winCombinations[i])
+            // console.log(winCombinations[i])
             arrayRandom = winCombinations[i].concat(arrayRandom)
-            console.log(arrayRandom)
+            // console.log(arrayRandom)
           }
         }
       }
@@ -40,9 +40,6 @@ function checkWin(arr){
           count++
           if (count == 3){
             ceil.forEach(element => element.removeEventListener('click', currentStep));
-            // (arr === dataO) ? scoreAi++ : scorePlayer++;
-            // gameCount++
-            // printScore()
             return true, gameCount++, (arr === dataO) ? scoreAi++ : scorePlayer++, printScore()
           }
         }
@@ -88,11 +85,11 @@ function currentStep(){
     checkWin(dataO)
     arrayRandom = [4,0,2,1,6,5,3,7,8]
 
-    // if(stepCount === 9 && !checkWin(dataX) && !checkWin(dataO) ){
-    //   scoreDraw++
-    //   gameCount++
-    //   printScore()
-    // }
+    if(stepCount === 9 && !checkWin(dataX) && !checkWin(dataO) ){
+      scoreDraw++
+      gameCount++
+      printScore()
+    }
     // console.log('stepCount :',stepCount)
     // console.log('dataX :',dataX)
     // console.log('dataO :',dataO)
