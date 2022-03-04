@@ -73,11 +73,17 @@ function currentStep(){
     this.innerHTML = 'X'
     this.classList.remove('hover')
     dataX.push(num)
-    checkWin(dataX)
+    // checkWin(dataX)
     stepCount++
-    if(dataX == 2 && ceil[0].innerHTML == 'X', ceil[8].innerHTML == 'X' || dataX == 2 && ceil[2].innerHTML == 'X', ceil[6].innerHTML == 'X'){
-      arrayRandom.unshift(1)
-    }
+    // console.log(ceil[0])
+    // if((dataX == 2 && ceil[0].innerHTML === 'X' && ceil[8].innerHTML === 'X') || (dataX == 2 && ceil[2].innerHTML === 'X' && ceil[6].innerHTML === 'X')){
+    //   arrayRandom.unshift(1)
+    //   console.log(1 + arrayRandom)
+    // }
+    // else if(dataX == 2 && ceil[1].innerHTML === 'X' && ceil[3].innerHTML === 'X') {
+    //   arrayRandom.unshift(0,4)
+    //   console.log(arrayRandom)
+    // }
        
     check(dataX)
     check(dataO)
