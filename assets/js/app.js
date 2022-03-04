@@ -21,7 +21,9 @@ function check(arr){
         if (arr.indexOf(someWinArr[k]) !== -1) {
           count++
           if (count == 2){
-            return arrayRandom = winCombinations[i].concat(arrayRandom)
+            console.log(winCombinations[i])
+            arrayRandom = winCombinations[i].concat(arrayRandom)
+            console.log(arrayRandom)
           }
         }
       }
