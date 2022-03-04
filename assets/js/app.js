@@ -4,11 +4,11 @@
 function aiTurn(arr){
   for(let i = 0; i < arr.length; i++){
     if(ceil[arr[i]].innerHTML !== "X" && ceil[arr[i]].innerHTML !== "O"){
-      ceil[arr[i]].innerHTML = 'O'
+      
       dataO.push(arr[i])
       ceil[arr[i]].classList.remove('hover')
       stepCount++
-      return
+      return ceil[arr[i]].innerHTML = 'O'
     }
   }
 }
@@ -21,7 +21,9 @@ function check(arr){
         if (arr.indexOf(someWinArr[k]) !== -1) {
           count++
           if (count == 2){
-            return arrayRandom = winCombinations[i].concat(arrayRandom)
+            // console.log(winCombinations[i])
+            arrayRandom = winCombinations[i].concat(arrayRandom)
+            // console.log(arrayRandom)
           }
         }
       }
@@ -29,7 +31,7 @@ function check(arr){
   }
 }
 
-function checkWin(arr, score){
+function checkWin(arr){
   for (let i = 0; i < winCombinations.length;  i++) {
     let someWinArr = winCombinations[i],
     count = 0;
@@ -38,10 +40,7 @@ function checkWin(arr, score){
           count++
           if (count == 3){
             ceil.forEach(element => element.removeEventListener('click', currentStep));
-            (arr == dataO) ? scoreAi++ : scorePlayer++;
-            gameCount++
-            printScore()
-            return true
+            return true, gameCount++, (arr === dataO) ? scoreAi++ : scorePlayer++, printScore()
           }
         }
       }
@@ -74,15 +73,19 @@ function currentStep(){
     this.innerHTML = 'X'
     this.classList.remove('hover')
     dataX.push(num)
-    checkWin(dataX, scorePlayer)
+    checkWin(dataX)
     stepCount++
-    check(dataO)
+    if(dataX == 2 && ceil[0].innerHTML == 'X', ceil[8].innerHTML == 'X' || dataX == 2 && ceil[2].innerHTML == 'X', ceil[6].innerHTML == 'X'){
+      arrayRandom.unshift(1)
+    }
+       
     check(dataX)
+    check(dataO)
     aiTurn(arrayRandom)
-    checkWin(dataO, scoreAi)
+    checkWin(dataO)
     arrayRandom = [4,0,2,1,6,5,3,7,8]
 
-    if(stepCount === 9 && !checkWin(dataX,scorePlayer) && !checkWin(dataO,scoreAi) ){
+    if(stepCount === 9 && !checkWin(dataX) && !checkWin(dataO) ){
       scoreDraw++
       gameCount++
       printScore()
