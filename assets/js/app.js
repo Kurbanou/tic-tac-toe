@@ -12,6 +12,19 @@ function aiTurn(arr){ //arrayRandom
 
 function randomAi(){
   arrayRandom = [4,0,1,2,3,4,5,6,7,8]
+  if(ceil[4].innerHTML === 'X'){
+    arrayRandom.unshift(2)
+    console.log('0')
+  }
+  else if(ceil[7].innerHTML === 'X' || ceil[5].innerHTML === 'X'){
+    arrayRandom.unshift(1)
+    console.log('1')
+  }
+  else if(ceil[6].innerHTML === 'X' || ceil[2].innerHTML === 'X'){
+    arrayRandom.unshift(1)
+    console.log('2')
+  }
+
 }
 
 function check(arr){
@@ -46,7 +59,6 @@ function scoreReset() {
 }
 
 document.querySelector('.reset').addEventListener('click', scoreReset)
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 function checkWin(arr){
   for (let i = 0; i < winCombinations.length;  i++) {
@@ -65,7 +77,7 @@ function checkWin(arr){
   }
 }
 
-
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 function currentStep(){
 
