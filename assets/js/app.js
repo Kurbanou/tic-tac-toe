@@ -17,7 +17,7 @@ function randomAi(){
     console.log('0')
   }
   else if(ceil[7].innerHTML === 'X' || ceil[5].innerHTML === 'X'){
-    arrayRandom.unshift(1)
+    arrayRandom.unshift(2)
     console.log('1')
   }
   else if(ceil[6].innerHTML === 'X' || ceil[2].innerHTML === 'X'){
