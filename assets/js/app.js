@@ -14,15 +14,16 @@ function randomAi(){
   arrayRandom = [4,0,1,2,3,4,5,6,7,8]
   if(ceil[4].innerHTML === 'X'){
     arrayRandom.unshift(2)
-    console.log('0')
+    return console.log('0')
+
   }
-  else if(ceil[7].innerHTML === 'X' || ceil[5].innerHTML === 'X'){
+  if(ceil[7].innerHTML == 'X' && ceil[5].innerHTML == 'X'){
     arrayRandom.unshift(2)
-    console.log('1')
+    return console.log('1')
   }
-  else if(ceil[6].innerHTML === 'X' || ceil[2].innerHTML === 'X'){
+  if(ceil[6].innerHTML == 'X' && ceil[2].innerHTML == 'X'){
     arrayRandom.unshift(1)
-    console.log('2')
+    return console.log('2')
   }
 
 }
@@ -69,6 +70,13 @@ function checkWin(arr){
           count++
           if (count == 3){
             ceil.forEach(element => element.removeEventListener('click', currentStep));
+
+            let winarr = winCombinations[i]
+            console.log(winCombinations[i],winarr)
+            for(let w = 0; w <winarr.length; w++){
+              ceil[winarr[w]].style.backgroundColor = "white"
+              ceil[winarr[w]].style.color = "red"
+            }
             return true
           }
         }
