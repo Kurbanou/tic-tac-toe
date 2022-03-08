@@ -94,6 +94,7 @@ function currentStep(){
       compScore = document.querySelector('.compScore')
       let num = +this.getAttribute('data-ceil')
       this.innerHTML = 'X'
+      this.removeEventListener('click', currentStep)
       this.classList.remove('hover')
       dataX.push(num)
       stepCount++
