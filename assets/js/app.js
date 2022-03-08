@@ -1,4 +1,50 @@
 // +++++++++++++++++++++++++++++++++++++++GAME+++++++++++++++++++++++++++++++
+const options = document.querySelector('.menu__table')
+let level = options.querySelector('.active').innerHTML
+setLevel()
+
+
+function setLevel(){
+  const gameLev = document.querySelectorAll('.option')
+  gameLev.forEach(elem => elem.addEventListener('click', function(){
+    level = this.innerHTML
+    newGame()
+  }))
+}
+
+function randomAi(){
+  arrayRandom = [4,0,1,2,3,4,5,6,7,8]
+  if(ceil[4].innerHTML === 'X'){
+    arrayRandom.unshift(2)
+    return
+  }
+}
+
+function check(arr){//hard add
+  for (let i = 0; i < winCombinations.length;  i++) {
+    let someWinArr = winCombinations[i],
+    count = 0;
+      for (let k = 0; k < someWinArr.length; k++){
+        if (arr.indexOf(someWinArr[k]) !== -1) {
+          count++
+          if (count == 2){
+            arrayRandom = winCombinations[i].concat(arrayRandom)
+          }
+          if (level == 'hard' && count == 1 && ceil[7].innerHTML == 'X'){
+            arrayRandom.unshift(6)
+          }
+          if (level == 'hard' && count == 1 && ceil[7].innerHTML == 'X' && ceil[5].innerHTML == 'X' ){
+            arrayRandom.unshift(6)
+          }
+          if (level == 'hard' && count == 1 && ceil[6].innerHTML == 'X' && ceil[2].innerHTML == 'X' ){
+            arrayRandom.unshift(7)
+          }
+        }
+      }
+    count = 0
+  }
+}
+
 function aiTurn(arr){ //arrayRandom
   for(let i = 0; i < arr.length; i++){
     if(ceil[arr[i]].innerHTML !== "X" && ceil[arr[i]].innerHTML !== "O"){
@@ -10,55 +56,12 @@ function aiTurn(arr){ //arrayRandom
   }
 }
 
-function randomAi(){
-  arrayRandom = [4,0,1,2,3,4,5,6,7,8]
-  if(ceil[4].innerHTML === 'X'){
-    arrayRandom.unshift(2)
-    console.log('0')
-  }
-  else if(ceil[7].innerHTML === 'X' || ceil[5].innerHTML === 'X'){
-    arrayRandom.unshift(2)
-    console.log('1')
-  }
-  else if(ceil[6].innerHTML === 'X' || ceil[2].innerHTML === 'X'){
-    arrayRandom.unshift(1)
-    console.log('2')
-  }
-
-}
-
-function check(arr){
-  for (let i = 0; i < winCombinations.length;  i++) {
-    let someWinArr = winCombinations[i],
-    count = 0;
-      for (let k = 0; k < someWinArr.length; k++){
-        if (arr.indexOf(someWinArr[k]) !== -1) {
-          count++
-          if (count == 2){
-            arrayRandom = winCombinations[i].concat(arrayRandom)
-          }
-        }
-      }
-    count = 0
-  }
-}
-
 function printScore(){
   document.querySelector('.playerScore').innerHTML = `${scorePlayer}`
   document.querySelector('.drawScore').innerHTML = `${scoreDraw}`
   document.querySelector('.compScore').innerHTML = `${scoreAi}`
   document.querySelector('.countGames').innerHTML = `Games played: ${gameCount}`
 }
-
-function scoreReset() {
-  gameCount = 0
-  scorePlayer = 0
-  scoreAi = 0
-  scoreDraw = 0
-  printScore()
-}
-
-document.querySelector('.reset').addEventListener('click', scoreReset)
 
 function checkWin(arr){
   for (let i = 0; i < winCombinations.length;  i++) {
@@ -69,6 +72,11 @@ function checkWin(arr){
           count++
           if (count == 3){
             ceil.forEach(element => element.removeEventListener('click', currentStep));
+            let winarr = winCombinations[i]
+            for(let w = 0; w <winarr.length; w++){
+              ceil[winarr[w]].style.backgroundColor = "white"
+              ceil[winarr[w]].style.color = "red"
+            }
             return true
           }
         }
@@ -80,50 +88,58 @@ function checkWin(arr){
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 function currentStep(){
-
   randomAi()
   if(!this.innerHTML){
-    playerScore = document.querySelector('.playerScore')
-    compScore = document.querySelector('.compScore')
-    let num = +this.getAttribute('data-ceil')
-    this.innerHTML = 'X'
-    this.classList.remove('hover')
-    dataX.push(num)
-    stepCount++
-    stepAi()
-    if(!checkWin(dataX)){
+      playerScore = document.querySelector('.playerScore')
+      compScore = document.querySelector('.compScore')
+      let num = +this.getAttribute('data-ceil')
+      this.innerHTML = 'X'
+      this.classList.remove('hover')
+      dataX.push(num)
+      stepCount++
+  }
+  stepAi()
+  if(!checkWin(dataX)){
     aiTurn(arrayRandom)
-    }
-    stepAi()
-
-    if(checkWin(dataX)){
-      scorePlayer++
-      gameCount++
-      printScore()
-    }
-
-    if(checkWin(dataO)){
-      scoreAi++
-      gameCount++
-      printScore()
-    }
-    if(stepCount === 9 && !checkWin(dataX) && !checkWin(dataO) ){//Draw +++++++++++
-      ceil.forEach(element => element.removeEventListener('click', currentStep));
-      scoreDraw++
-      gameCount++
-      printScore()
-    }
-    // console.log('stepCount :',stepCount)
-    // console.log('dataX :',dataX)
-    // console.log('dataO :',dataO)
+  }
+  if(checkWin(dataX)){
+    scorePlayer++
+    gameCount++
+    printScore()
+  }
+  if(checkWin(dataO)){
+    scoreAi++
+    gameCount++
+    printScore()
+  }
+  if(stepCount == 9 && !checkWin(dataX) && !checkWin(dataO) ){//Draw +++++++++++
+    ceil.forEach(element => element.removeEventListener('click', currentStep));
+    scoreDraw++
+    gameCount++
+    printScore()
   }
 }
 
+
+  console.log(stepCount)
+  console.log('player ' + scorePlayer)
+
+
+
+
+
 function stepAi(){
-  check(dataX)
-  check(dataO)
-  checkWin(dataX)
-  checkWin(dataO)
-  return
+  if(level == 'easy'){
+    checkWin(dataX)
+    checkWin(dataO)
+    return
+  }
+  else{
+    check(dataX)
+    check(dataO)
+    checkWin(dataX)
+    checkWin(dataO)
+    return
+  }
 }
 
