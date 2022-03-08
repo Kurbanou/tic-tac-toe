@@ -155,7 +155,12 @@ function createTable(){
     const reset = document.querySelector('.reset')
     reset.addEventListener('click',scoreReset)
     const buttons = document.querySelectorAll('.button')
-    buttons.forEach(el => el.addEventListener('click',burgerOn))
+    document.addEventListener('click', function(){
+        if(burger.classList.contains('on'))
+        {
+            burgerOn()
+        }
+    })
 
     const levels = document.querySelectorAll('.option')
     levels.forEach(level =>
