@@ -50,6 +50,7 @@ function aiTurn(arr){ //arrayRandom
     if(ceil[arr[i]].innerHTML !== "X" && ceil[arr[i]].innerHTML !== "O"){
       dataO.push(arr[i])
       ceil[arr[i]].classList.remove('hover')
+      ceil[arr[i]].removeEventListener('click', currentStep)
       stepCount++
       return ceil[arr[i]].innerHTML = 'O'
     }
