@@ -97,11 +97,13 @@ function createTable(){
     </div>`
     table.append(options)
     const burger = document.querySelector('.toggle')
+    // function burgerOn(){
+    //     burger.classList.toggle('on')
+    //  }
     function burgerOn(){
-        burger.classList.toggle('on')
+        setTimeout(function(){burger.classList.toggle('on')},300)
      }
     burger.addEventListener('click', burgerOn)
-
     const countGames =document.createElement('div')
     countGames.classList.add('countGames')
     countGames.innerHTML = `Games played: ${gameCount}`
@@ -154,6 +156,16 @@ function createTable(){
     reset.addEventListener('click',scoreReset)
     const buttons = document.querySelectorAll('.button')
     buttons.forEach(el => el.addEventListener('click',burgerOn))
+
+    const levels = document.querySelectorAll('.option')
+    levels.forEach(level =>
+        level.addEventListener('click', function(){
+            levels.forEach(el=> el.classList.remove('active'))
+            this.classList.add('active')
+        })
+    )
+
+
 
 }
 

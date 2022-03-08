@@ -1,30 +1,16 @@
 // +++++++++++++++++++++++++++++++++++++++GAME+++++++++++++++++++++++++++++++
-function aiTurn(arr){ //arrayRandom
-  for(let i = 0; i < arr.length; i++){
-    if(ceil[arr[i]].innerHTML !== "X" && ceil[arr[i]].innerHTML !== "O"){
-      dataO.push(arr[i])
-      ceil[arr[i]].classList.remove('hover')
-      stepCount++
-      return ceil[arr[i]].innerHTML = 'O'
-    }
-  }
-}
+const options = document.querySelector('.menu__table')
+let level = options.querySelector('.active').innerHTML
+setLevel()
 
-function randomAi(){
-  arrayRandom = [4,0,1,2,3,4,5,6,7,8]
-  if(ceil[4].innerHTML === 'X'){
-    arrayRandom.unshift(2)
-    return console.log('0')
 
-  }
-  if(ceil[7].innerHTML == 'X' && ceil[5].innerHTML == 'X'){
-    arrayRandom.unshift(2)
-    return console.log('1')
-  }
-  if(ceil[6].innerHTML == 'X' && ceil[2].innerHTML == 'X'){
-    arrayRandom.unshift(1)
-    return console.log('2')
-  }
+function setLevel(){
+  console.log(level)
+  const gameLev = document.querySelectorAll('.option')
+  gameLev.forEach(elem => elem.addEventListener('click', function(){
+   level = this.innerHTML
+    console.log('Game level ' + level)
+  }))
 
 }
 
@@ -44,6 +30,37 @@ function check(arr){
   }
 }
 
+
+function aiTurn(arr){ //arrayRandom
+  for(let i = 0; i < arr.length; i++){
+    if(ceil[arr[i]].innerHTML !== "X" && ceil[arr[i]].innerHTML !== "O"){
+      dataO.push(arr[i])
+      ceil[arr[i]].classList.remove('hover')
+      stepCount++
+      return ceil[arr[i]].innerHTML = 'O'
+    }
+  }
+}
+
+function randomAi(){
+
+  arrayRandom = [4,0,1,2,3,4,5,6,7,8]
+  if(ceil[4].innerHTML === 'X'){
+    arrayRandom.unshift(2)
+    return console.log('0')
+
+  }
+  if(ceil[7].innerHTML == 'X' && ceil[5].innerHTML == 'X'){
+    arrayRandom.unshift(2)
+    return console.log('1')
+  }
+  if(ceil[6].innerHTML == 'X' && ceil[2].innerHTML == 'X'){
+    arrayRandom.unshift(1)
+    return console.log('2')
+  }
+
+}
+
 function printScore(){
   document.querySelector('.playerScore').innerHTML = `${scorePlayer}`
   document.querySelector('.drawScore').innerHTML = `${scoreDraw}`
@@ -60,9 +77,7 @@ function checkWin(arr){
           count++
           if (count == 3){
             ceil.forEach(element => element.removeEventListener('click', currentStep));
-
             let winarr = winCombinations[i]
-            console.log(winCombinations[i],winarr)
             for(let w = 0; w <winarr.length; w++){
               ceil[winarr[w]].style.backgroundColor = "white"
               ceil[winarr[w]].style.color = "red"
@@ -78,7 +93,6 @@ function checkWin(arr){
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 function currentStep(){
-
   randomAi()
   if(!this.innerHTML){
     playerScore = document.querySelector('.playerScore')
@@ -118,10 +132,15 @@ function currentStep(){
 }
 
 function stepAi(){
-  check(dataX)
-  check(dataO)
-  checkWin(dataX)
-  checkWin(dataO)
-  return
+  if(level == 'easy'){
+    return
+  }
+  else{
+    check(dataX)
+    check(dataO)
+    checkWin(dataX)
+    checkWin(dataO)
+    return
+  }
 }
 
