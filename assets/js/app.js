@@ -51,16 +51,6 @@ function printScore(){
   document.querySelector('.countGames').innerHTML = `Games played: ${gameCount}`
 }
 
-function scoreReset() {
-  gameCount = 0
-  scorePlayer = 0
-  scoreAi = 0
-  scoreDraw = 0
-  printScore()
-}
-
-document.querySelector('.reset').addEventListener('click', scoreReset)
-
 function checkWin(arr){
   for (let i = 0; i < winCombinations.length;  i++) {
     let someWinArr = winCombinations[i],

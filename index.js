@@ -12,7 +12,6 @@ scorePlayer = 0
 scoreAi = 0
 scoreDraw = 0
 let stepCount = 0
-let arrayRandom = []
 let ceil = []
     ceil.length=9
 const winCombinations = [
@@ -26,10 +25,11 @@ const winCombinations = [
     [2, 4, 6],
   ]
 
-
+arrayRandom = [4,8,2,1,6,5,3,7,0]
 
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++
+
 
 function createInner(){
     const app = document.createElement('section')
@@ -83,12 +83,25 @@ function newGame(){
 function createTable(){
     const innerAppSecond = document.querySelector('.Table')
     const table =document.createElement('div')
-    table.classList.add('table','border-animate')
+    table.classList.add('table')
     innerAppSecond.append(table)
-    const message = document.createElement('div')
-    message.classList.add('message')
-    message.innerHTML = gameInfo
-    table.append(message)
+    const options = document.createElement('div')
+    options.classList.add('options')
+    options.innerHTML = `
+    <div class="toggle"><span></span></div>
+    <div class="menu__table">
+        <div class="option button active">easy</div>
+        <div class="option button">normal</div>
+        <div class="option button">hard</div>
+        <div class="reset button">reset score</div>
+    </div>`
+    table.append(options)
+    const burger = document.querySelector('.toggle')
+    function burgerOn(){
+        burger.classList.toggle('on')
+     }
+    burger.addEventListener('click', burgerOn)
+
     const countGames =document.createElement('div')
     countGames.classList.add('countGames')
     countGames.innerHTML = `Games played: ${gameCount}`
@@ -123,21 +136,24 @@ function createTable(){
     const innerButton= document.createElement('div')
     innerButton.classList.add('inner__button')
     table.append(innerButton)
-    const reGame = document.createElement('button')
-    reGame.classList.add('learn-more', 'newGame')
-    reGame.innerHTML = `<span class="circle" aria-hidden="true">
-                        <span class="icon arrow"></span>
-                        </span>
-                        <span class="button-text">new game</span>`
+    const reGame = document.createElement('div')
+    reGame.classList.add('newGame')
+    reGame.innerHTML = `new game`
     innerButton.append(reGame)
     reGame.addEventListener('click', newGame)
-    const resetScore = document.createElement('button')
-    resetScore.classList.add('learn-more', 'reset')
-    resetScore.innerHTML = `<span class="circle" aria-hidden="true">
-                            <span class="icon arrow"></span>
-                            </span>
-                            <span class="button-text">reset score</span>`
-    innerButton.append(resetScore)
+
+    function scoreReset() {
+        gameCount = 0
+        scorePlayer = 0
+        scoreAi = 0
+        scoreDraw = 0
+        printScore()
+    }
+
+    const reset = document.querySelector('.reset')
+    reset.addEventListener('click',scoreReset)
+    const buttons = document.querySelectorAll('.button')
+    buttons.forEach(el => el.addEventListener('click',burgerOn))
 
 }
 
